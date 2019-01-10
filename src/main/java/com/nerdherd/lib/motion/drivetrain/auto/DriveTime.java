@@ -1,6 +1,6 @@
-package com.nerdherd.lib.drivetrain.auto;
+package com.nerdherd.lib.motion.drivetrain.auto;
 
-import com.nerdherd.lib.drivetrain.AbstractDrivetrain;
+import com.nerdherd.lib.motion.drivetrain.AbstractDrivetrain;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;

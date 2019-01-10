@@ -5,24 +5,24 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package com.nerdherd.lib.drivetrain.auto;
+package com.nerdherd.lib.motion.drivetrain.characterization;
 
-import com.nerdherd.lib.drivetrain.AbstractDrivetrain;
-import com.nerdherd.lib.drivetrain.TrajectoryFollower;
+
+import com.nerdherd.lib.motion.drivetrain.AbstractDrivetrain;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import jaci.pathfinder.Trajectory;
 
-public class DriveTrajectory extends Command {
-  
-  private TrajectoryFollower m_controller;
-  private double m_leftVelocity, m_rightVelocity, m_startTime, m_time, m_lastTime;
+public class VelocityTest extends Command {
+
+  private double m_desiredVel, m_time, m_startTime;
+  private double m_desiredTime;
   private AbstractDrivetrain m_drive;
 
-  public DriveTrajectory(AbstractDrivetrain drive, Trajectory traj, int lookahead, Boolean goingForwards, double kP, double kD) {
+  public VelocityTest(AbstractDrivetrain drive, double desired_vel, double desired_time) {
+    m_desiredVel = desired_vel;
+    m_desiredTime = desired_time;
     m_drive = drive;
-    m_controller = new TrajectoryFollower(traj, lookahead, goingForwards, kP, kD);
     requires(m_drive);
   }
 
@@ -30,26 +30,26 @@ public class DriveTrajectory extends Command {
   @Override
   protected void initialize() {
     m_startTime = Timer.getFPGATimestamp();
-    m_lastTime = Timer.getFPGATimestamp();
-    m_time = Timer.getFPGATimestamp() - m_startTime;
+
+    // m_drive.startVelocityController();
+    // m_drive.setTargetVelocities(m_desiredVel, m_desiredVel);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     m_time = Timer.getFPGATimestamp() - m_startTime;
-    m_controller.calculate(m_drive.getXpos(), m_drive.getYpos(), m_drive.getRawYaw(), m_time - m_lastTime);
-    m_drive.setVelocityFPS(m_controller.getLeftVelocity(), m_controller.getRightVelocity());
-    m_lastTime = m_time;
+    m_drive.addDesiredVelocities(m_desiredVel, m_desiredVel);
+    m_drive.setVelocity(m_desiredVel, m_desiredVel);
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return m_controller.isFinished();
+      return m_time > m_desiredTime;
+      // return false;
   }
-
-  
 
   // Called once after isFinished returns true
   @Override
@@ -61,5 +61,6 @@ public class DriveTrajectory extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

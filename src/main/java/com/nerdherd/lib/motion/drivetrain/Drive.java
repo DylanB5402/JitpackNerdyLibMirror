@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package com.nerdherd.lib.drivetrain;
+package com.nerdherd.lib.motion.drivetrain;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -19,7 +19,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.kauailabs.navx.frc.AHRS;
 import com.nerdherd.lib.drivers.NerdyTalon;
-import com.nerdherd.lib.drivetrain.teleop.ArcadeDrive;
+import com.nerdherd.lib.motion.drivetrain.teleop.ArcadeDrive;
 
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
@@ -28,7 +28,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * Add your docs here.
  */
-public class Drive implements Drivetrain{
+public class Drive extends AbstractDrivetrain{
 
     private final NerdyTalon m_leftMaster, m_leftSlave1;
     private final NerdyTalon m_rightMaster, m_rightSlave1;

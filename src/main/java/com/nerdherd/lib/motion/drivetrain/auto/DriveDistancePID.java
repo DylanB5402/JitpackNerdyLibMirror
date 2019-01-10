@@ -1,33 +1,35 @@
-package com.nerdherd.lib.drivetrain.auto;
+package com.nerdherd.lib.motion.drivetrain.auto;
 
-import com.nerdherd.lib.drivetrain.AbstractDrivetrain;
+import com.nerdherd.lib.motion.drivetrain.AbstractDrivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class DriveDistanceMotionMagic extends Command {
+public class DriveDistancePID extends Command {
 
 	private double m_distance;
 	private double m_error;
+	private double m_power, m_rotP;
     private AbstractDrivetrain m_drive;
 
-    public DriveDistanceMotionMagic(AbstractDrivetrain drive, double distance) {
+    public DriveDistancePID(AbstractDrivetrain drive, double distance, double rotP) {
         m_drive = drive;
-    	m_distance = distance;
-       requires(m_drive);
+        m_distance = distance;
+        m_rotP = rotP;
+        requires(m_drive);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	m_error = m_distance - m_drive.getAverageEncoderPosition();
-    	m_drive.setPositionMotionMagic(m_distance, m_distance);
+    	m_power = m_error * m_rotP;    	
+    	m_drive.setPower(m_power, m_power);   	
     }
 
     // Make this return true when this Command no longer needs to run execute()

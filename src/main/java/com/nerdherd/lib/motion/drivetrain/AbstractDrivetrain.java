@@ -5,14 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package com.nerdherd.lib.drivetrain;
+package com.nerdherd.lib.motion.drivetrain;
 
 /**
  * Add your docs here.
  */
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public interface Drivetrain {
+public abstract class AbstractDrivetrain extends Subsystem {
 
     public abstract void setPower(double leftPower, double rightPower);
 
