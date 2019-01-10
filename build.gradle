@@ -4,7 +4,7 @@ plugins {
     id "maven"
 }
 
-def ROBOT_MAIN_CLASS = "com.nerdherd687.robot.Main"
+def ROBOT_MAIN_CLASS = "com.nerdherd.robot.Main"
 
 // Define my targets (RoboRIO) and artifacts (deployable files)
 // This is added by GradleRIO's backing project EmbeddedTools.
