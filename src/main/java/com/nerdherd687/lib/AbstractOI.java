@@ -5,14 +5,19 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package com.nerdherd687.lib;
 
 /**
  * Add your docs here.
  */
-public class Test {
+public abstract class AbstractOI {
 
-    public static double getTest() {
-        return 687;
-    }
+    public abstract double getDriveJoyLeftX();
+    public abstract double getDriveJoyLeftY();
+
+    public abstract double getDriveJoyRightX();
+    public abstract double getDriveJoyRightY();
+
+    public abstract double getOperatorJoyX();
+    public abstract double getOperatorJoyY();
 }
