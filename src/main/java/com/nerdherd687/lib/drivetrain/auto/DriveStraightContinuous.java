@@ -1,7 +1,6 @@
 package com.nerdherd687.lib.drivetrain.auto;
 
 import com.nerdherd687.lib.drivetrain.Drivetrain;
-import com.nerdherd687.robot.constants.DriveConstants;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -36,7 +35,7 @@ public class DriveStraightContinuous extends Command {
 
     @Override
     protected void execute() {
-	m_drive.setPower((DriveConstants.kLeftAdjustment * m_straightPower), m_straightPower);
+	m_drive.setPower(m_straightPower, m_straightPower);
     }
 
     @Override

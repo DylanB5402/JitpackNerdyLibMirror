@@ -10,7 +10,6 @@ package com.nerdherd687.lib.drivetrain.auto;
 import java.io.File;
 
 import com.nerdherd687.lib.drivetrain.Drivetrain;
-import com.nerdherd687.robot.constants.DriveConstants;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -22,50 +21,65 @@ import jaci.pathfinder.modifiers.TankModifier;
 public class DriveTrajectoryPathfinder extends Command {
   private Trajectory m_leftTrajectory, m_rightTrajectory, m_sourceTrajectory;
   private DistanceFollower m_leftFollower, m_rightFollower;
-  private double m_leftOutput, m_rightOutput, m_turn, m_angularError;
+  private double m_leftOutput, m_rightOutput, m_turn, m_angularError, m_rotP;
   private TankModifier m_modifier;
   private Drivetrain m_drive;
+  double m_LeftVelocityP, m_LeftVelocityD, m_LeftV, m_LeftStatic;
+  double m_RightVelocityP, m_RightVelocityD, m_RightV, m_RightStatic;
 
-  public DriveTrajectoryPathfinder(Drivetrain drive, Trajectory traj) {
+  public DriveTrajectoryPathfinder(Drivetrain drive, Trajectory traj, double drivetrainWidth,
+            double leftVelP, double rightVelP, double leftVelD, double rightVelD, double leftV, 
+            double rightV, double leftStatic, double rightStatic, double rotP) {
+    m_LeftVelocityP = leftVelP;
+    m_LeftVelocityD = leftVelD;
+    m_LeftStatic = leftStatic;
+    m_LeftV = leftV;
+
+    m_RightVelocityP = rightVelP;
+    m_RightVelocityD = rightVelD;
+    m_RightStatic = rightStatic;
+    m_RightV = rightV;
+
+    m_rotP = rotP;
     m_drive = drive;
     m_sourceTrajectory = traj;
     m_modifier = new TankModifier(m_sourceTrajectory);
-    m_modifier.modify(DriveConstants.kDrivetrainWidth);    
+    m_modifier.modify(drivetrainWidth);    
     m_leftTrajectory = m_modifier.getLeftTrajectory();
     m_rightTrajectory = m_modifier.getRightTrajectory();
     requires(m_drive);
   }
 
-  public DriveTrajectoryPathfinder(Drivetrain drive, String file) {
-    m_drive = drive;
-    File traj = new File("/home/lvuser/paths/" + file + "_source.traj");
-    SmartDashboard.putBoolean("Source exists", true);
-    m_sourceTrajectory = Pathfinder.readFromFile(traj);
-    File leftTraj = new File("/home/lvuser/paths/" + file + "_left.traj");
-    SmartDashboard.putBoolean("Left exists", true);
-    m_leftTrajectory = Pathfinder.readFromFile(leftTraj);
-    File rightTraj = new File("/home/lvuser/paths/" + file + "_right.traj");
-    SmartDashboard.putBoolean("Right exists", true);
-    m_rightTrajectory = Pathfinder.readFromFile(rightTraj);
+  // public DriveTrajectoryPathfinder(Drivetrain drive, String file) {
+  //   m_drive = drive;
+  //   File traj = new File("/home/lvuser/paths/" + file + "_source.traj");
+  //   SmartDashboard.putBoolean("Source exists", true);
+  //   m_sourceTrajectory = Pathfinder.readFromFile(traj);
+  //   File leftTraj = new File("/home/lvuser/paths/" + file + "_left.traj");
+  //   SmartDashboard.putBoolean("Left exists", true);
+  //   m_leftTrajectory = Pathfinder.readFromFile(leftTraj);
+  //   File rightTraj = new File("/home/lvuser/paths/" + file + "_right.traj");
+  //   SmartDashboard.putBoolean("Right exists", true);
+  //   m_rightTrajectory = Pathfinder.readFromFile(rightTraj);
     
-  }
+  // }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
     m_leftFollower = new DistanceFollower(m_leftTrajectory);
     m_rightFollower = new DistanceFollower(m_rightTrajectory);
-    m_leftFollower.configurePIDVA(DriveConstants.kLeftVelocityP, 0, DriveConstants.kLeftVelocityD, DriveConstants.kLeftV, 0);
-    m_rightFollower.configurePIDVA(DriveConstants.kRightVelocityP, 0, DriveConstants.kRightVelocityD, DriveConstants.kRightV, 0);
+    m_leftFollower.configurePIDVA(m_LeftVelocityP, 0, m_LeftVelocityD, m_LeftV, 0);
+    m_rightFollower.configurePIDVA(m_RightVelocityP, 0, m_RightVelocityD, m_RightV, 0);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    m_leftOutput = m_leftFollower.calculate(m_drive.getLeftPositionFeet()) + DriveConstants.kLeftStatic;
-    m_rightOutput = m_rightFollower.calculate(m_drive.getRightPositionFeet()) + DriveConstants.kRightStatic;
+    m_leftOutput = m_leftFollower.calculate(m_drive.getLeftPositionFeet()) + m_LeftStatic;
+    m_rightOutput = m_rightFollower.calculate(m_drive.getRightPositionFeet()) + m_RightStatic;
     m_angularError = Pathfinder.boundHalfDegrees(Pathfinder.r2d(-m_leftFollower.getHeading()) - m_drive.getRawYaw());
-    m_turn = DriveConstants.kRotP * m_angularError;
+    m_turn = m_rotP * m_angularError;
     m_drive.addDesiredVelocities(m_leftFollower.getSegment().velocity, m_rightFollower.getSegment().velocity);
     m_drive.setPower(m_leftOutput - m_turn, m_rightOutput + m_turn);
     SmartDashboard.putNumber("Velocity", m_leftFollower.getSegment().velocity);

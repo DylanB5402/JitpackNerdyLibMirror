@@ -1,7 +1,6 @@
 package com.nerdherd687.lib.drivetrain.auto;
 
 import com.nerdherd687.lib.drivetrain.Drivetrain;
-import com.nerdherd687.robot.constants.DriveConstants;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -54,7 +53,7 @@ public class DriftTurnToAngle extends Command {
 	rotError = (rotError < -180) ? rotError + 360 : rotError;
 	double rotPower = m_kRotP * rotError * doneness;
 
-	m_drive.setPower((DriveConstants.kLeftAdjustment * m_straightPower) - rotPower, m_straightPower + rotPower);
+	m_drive.setPower((m_straightPower) - rotPower, m_straightPower + rotPower);
     }
 
     @Override

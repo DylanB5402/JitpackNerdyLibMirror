@@ -2,7 +2,6 @@ package com.nerdherd687.lib.drivetrain.auto;
 
 import com.nerdherd687.lib.drivetrain.Drivetrain;
 import com.nerdherd687.lib.misc.NerdyMath;
-import com.nerdherd687.robot.constants.DriveConstants;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -20,7 +19,7 @@ public class TurnToAngle extends Command {
     private double m_error;
     private double m_prevTimestamp;
     private double m_prevError;
-    private double m_dTerm;
+    private double m_dTerm, m_rotP, m_rotD;
     private Drivetrain m_drive;
 
     private int m_counter;
@@ -31,9 +30,11 @@ public class TurnToAngle extends Command {
      * @param timeout
      * @param tolerance
      */
-    public TurnToAngle(double angle, int tolerance, double timeout) {
+    public TurnToAngle(double angle, int tolerance, double timeout, double rotP, double rotD) {
 	m_desiredAngle = angle;
-	m_tolerance = tolerance;
+    m_tolerance = tolerance;
+    m_rotP = rotP;
+    m_rotD = rotD;
 	m_timeout = timeout;
 
 	// subsystem dependencies
@@ -57,13 +58,13 @@ public class TurnToAngle extends Command {
 	m_dTerm = (m_prevError - m_error) / (m_prevTimestamp - Timer.getFPGATimestamp());
 	m_prevTimestamp = Timer.getFPGATimestamp();
 
-	double power = DriveConstants.kRotP * m_error + DriveConstants.kRotD * m_dTerm;
-	power = NerdyMath.threshold(power, DriveConstants.kRotMinPower, DriveConstants.kRotPMaxPower);
-	// power = Math.min(DriveConstants.kRotPMaxPower,
-	// Math.max(-DriveConstants.kRotPMaxPower, power));
+	double power = m_rotP * m_error + m_rotD * m_dTerm;
+	// power = NerdyMath.threshold(power, m_RotMinPower, m_RotPMaxPower);
+	// power = Math.min(m_RotPMaxPower,
+	// Math.max(-m_RotPMaxPower, power));
 
-	m_drive.setPower((-DriveConstants.kLeftAdjustment * power), power);
-	if (Math.abs(m_error) <= DriveConstants.kDriveRotationTolerance) {
+	m_drive.setPower( power, power);
+	if (Math.abs(m_error) <= 2) {
 	    m_counter += 1;
 	} else {
 	    m_counter = 0;

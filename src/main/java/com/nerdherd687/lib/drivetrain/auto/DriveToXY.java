@@ -2,7 +2,6 @@ package com.nerdherd687.lib.drivetrain.auto;
 
 import com.nerdherd687.lib.drivetrain.Drivetrain;
 import com.nerdherd687.lib.misc.NerdyMath;
-import com.nerdherd687.robot.constants.DriveConstants;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -21,16 +20,18 @@ public class DriveToXY extends Command {
 	private double m_currentX;
 	private double m_currentY;
 	private boolean m_useStraightPID;
-	private double m_direction;
+	private double m_direction, m_rotP, m_distP;
 	private Drivetrain m_drive;
 
 	
-    public DriveToXY(Drivetrain drive, double x, double y, double straightPower, boolean useStraightPID) {
+    public DriveToXY(Drivetrain drive, double x, double y, double straightPower, boolean useStraightPID, double rotP, double straightP) {
 		m_drive = drive;
 		m_desiredX = x;
     	m_desiredY = y;
     	m_useStraightPID = useStraightPID;
-    	m_straightPower = straightPower;
+		m_straightPower = straightPower;
+		m_rotP = rotP;
+		m_distP = m_distP;
         requires(m_drive);
     }
 
@@ -50,7 +51,7 @@ public class DriveToXY extends Command {
     		m_desiredAngle += 180;
     	}
     	m_rotationalError = -m_desiredAngle - m_drive.getRawYaw();
-    	m_rotationalPower = m_rotationalError * DriveConstants.kRotP;
+    	m_rotationalPower = m_rotationalError * m_rotP;
     	if (m_rotationalError >= 180) {
     		m_rotationalError -= 360;
     	}
@@ -60,7 +61,7 @@ public class DriveToXY extends Command {
     	
     	if (m_useStraightPID) {
     		m_straightError = NerdyMath.distanceFormula(m_currentX, m_currentY, m_desiredX, m_desiredY);
-        	m_straightPower = m_straightError * DriveConstants.kDriveP;
+        	m_straightPower = m_straightError * m_distP;
     	}
   
     	m_drive.setPower(m_straightPower - m_rotationalPower, m_straightPower + m_rotationalPower);
@@ -69,7 +70,7 @@ public class DriveToXY extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return NerdyMath.distanceFormula(m_currentX, m_currentY, m_desiredX, m_desiredY) < DriveConstants.kMinDistToBezierPoint;
+        return NerdyMath.distanceFormula(m_currentX, m_currentY, m_desiredX, m_desiredY) < 1;
     }
 
     // Called once after isFinished returns true
