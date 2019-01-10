@@ -1,7 +1,7 @@
 package com.nerdherd.lib.drivetrain.teleop;
 
 import com.nerdherd.lib.AbstractOI;
-import com.nerdherd.lib.drivetrain.Drivetrain;
+import com.nerdherd.lib.drivetrain.AbstractDrivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -12,10 +12,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class ArcadeDrive extends Command {
 
 	private double m_leftPower, m_rightPower;
-    private Drivetrain m_drive;
+    private AbstractDrivetrain m_drive;
     private AbstractOI m_oi;
     
-    public ArcadeDrive(Drivetrain drive, AbstractOI oi) {
+    public ArcadeDrive(AbstractDrivetrain drive, AbstractOI oi) {
         m_drive = drive;
         m_oi = oi;
     	requires(m_drive);

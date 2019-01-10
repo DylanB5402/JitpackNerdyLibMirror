@@ -8,7 +8,7 @@
 package com.nerdherd.lib.drivetrain.characterization;
 
 
-import com.nerdherd.lib.drivetrain.Drivetrain;
+import com.nerdherd.lib.drivetrain.AbstractDrivetrain;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -17,9 +17,9 @@ public class VelocityTest extends Command {
 
   private double m_desiredVel, m_time, m_startTime;
   private double m_desiredTime;
-  private Drivetrain m_drive;
+  private AbstractDrivetrain m_drive;
 
-  public VelocityTest(Drivetrain drive, double desired_vel, double desired_time) {
+  public VelocityTest(AbstractDrivetrain drive, double desired_vel, double desired_time) {
     m_desiredVel = desired_vel;
     m_desiredTime = desired_time;
     m_drive = drive;

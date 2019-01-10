@@ -8,7 +8,7 @@
 package com.nerdherd.lib.drivetrain.characterization;
 
 
-import com.nerdherd.lib.drivetrain.Drivetrain;
+import com.nerdherd.lib.drivetrain.AbstractDrivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -16,9 +16,9 @@ import edu.wpi.first.wpilibj.command.Command;
 public class OpenLoopDrive extends Command {
 
   private double m_power;
-  private Drivetrain m_drive;
+  private AbstractDrivetrain m_drive;
 
-  public OpenLoopDrive(Drivetrain drive, double power) {
+  public OpenLoopDrive(AbstractDrivetrain drive, double power) {
     m_power = power;
     m_drive = drive;
     requires(m_drive);

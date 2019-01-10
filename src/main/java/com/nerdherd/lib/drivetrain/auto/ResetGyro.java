@@ -1,6 +1,6 @@
 package com.nerdherd.lib.drivetrain.auto;
 
-import com.nerdherd.lib.drivetrain.Drivetrain;
+import com.nerdherd.lib.drivetrain.AbstractDrivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ResetGyro extends Command {
 
-    private Drivetrain m_drive;
+    private AbstractDrivetrain m_drive;
 
-    public ResetGyro(Drivetrain drive) {
+    public ResetGyro(AbstractDrivetrain drive) {
         m_drive = drive;
 	    requires(m_drive);
     }

@@ -1,6 +1,6 @@
 package com.nerdherd.lib.drivetrain.auto;
 
-import com.nerdherd.lib.drivetrain.Drivetrain;
+import com.nerdherd.lib.drivetrain.AbstractDrivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -15,7 +15,7 @@ public class DriveAtHeading extends Command {
     private double m_straightPower;
     private double m_heading, m_distance;
     private double m_kRotP;
-    private Drivetrain m_drive;
+    private AbstractDrivetrain m_drive;
 
     /**
      * @param straightPower
