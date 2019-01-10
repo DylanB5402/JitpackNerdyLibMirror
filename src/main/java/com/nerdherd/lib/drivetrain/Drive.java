@@ -28,7 +28,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * Add your docs here.
  */
-public class Drive extends AbstractDrivetrain {
+public class Drive implements Drivetrain{
 
     private final NerdyTalon m_leftMaster, m_leftSlave1;
     private final NerdyTalon m_rightMaster, m_rightSlave1;

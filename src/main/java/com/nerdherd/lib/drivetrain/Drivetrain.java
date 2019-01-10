@@ -7,14 +7,12 @@
 
 package com.nerdherd.lib.drivetrain;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
-
-import edu.wpi.first.wpilibj.command.Subsystem;
-
 /**
  * Add your docs here.
  */
-public abstract class AbstractDrivetrain extends Subsystem implements Drivetrain{
+import edu.wpi.first.wpilibj.command.Subsystem;
+
+public interface Drivetrain {
 
     public abstract void setPower(double leftPower, double rightPower);
 
@@ -63,4 +61,5 @@ public abstract class AbstractDrivetrain extends Subsystem implements Drivetrain
     public abstract double getXpos();
 
     public abstract double getYpos();
+
 }
