@@ -1,37 +1,37 @@
-package com.nerdherd.lib.motion.drivetrain.auto;
+package com.nerdherd.lib.drivetrain.auto;
 
-import com.nerdherd.lib.motion.drivetrain.AbstractDrivetrain;
+import com.nerdherd.lib.drivetrain.AbstractDrivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * Reset encoders
+ * Reset gyro with a command so we do not have to enable/disable every time
  */
 
-public class ResetDriveEncoders extends Command {
+public class ResetGyro extends Command {
 
     private AbstractDrivetrain m_drive;
 
-    public ResetDriveEncoders(AbstractDrivetrain drive) {
+    public ResetGyro(AbstractDrivetrain drive) {
         m_drive = drive;
 	    requires(m_drive);
     }
 
     @Override
     protected void initialize() {
-	SmartDashboard.putString("Current Drive Command", "ResetDriveEncoders");
-	m_drive.resetEncoders();
+	SmartDashboard.putString("Current Drive Command", "ResetGyro");
+    m_drive.resetYaw();
+    m_drive.resetXY();
     }
 
     @Override
     protected void execute() {
-	m_drive.resetEncoders();
     }
 
     @Override
     protected boolean isFinished() {
-	return m_drive.getAverageEncoderPosition() == 0;
+	return false;
     }
 
     @Override

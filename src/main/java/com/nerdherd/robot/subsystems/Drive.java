@@ -1,4 +1,4 @@
-package com.nerdherd687.robot.subsystems;
+package com.nerdherd.robot.subsystems;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -11,12 +11,12 @@ import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.kauailabs.navx.frc.AHRS;
-import com.nerdherd687.robot.RobotMap;
-import com.nerdherd687.lib.drivetrain.Drivetrain;
-import com.nerdherd687.lib.drivetrain.teleop.ArcadeDrive;
-import com.nerdherd687.robot.constants.DriveConstants;
-import com.nerdherd687.lib.drivers.NerdyTalon;
-import com.nerdherd687.robot.Robot;
+import com.nerdherd.robot.RobotMap;
+import com.nerdherd.lib.drivetrain.AbstractDrivetrain;
+import com.nerdherd.lib.drivetrain.teleop.ArcadeDrive;
+import com.nerdherd.robot.constants.DriveConstants;
+import com.nerdherd.lib.drivers.NerdyTalon;
+import com.nerdherd.robot.Robot;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -25,7 +25,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class Drive extends Drivetrain {
+public class Drive extends AbstractDrivetrain {
 
 	private final NerdyTalon m_leftMaster, m_leftSlave1;
 	private final NerdyTalon m_rightMaster, m_rightSlave1;

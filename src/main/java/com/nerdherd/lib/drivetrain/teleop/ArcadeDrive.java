@@ -1,7 +1,7 @@
-package com.nerdherd.lib.motion.drivetrain.teleop;
+package com.nerdherd.lib.drivetrain.teleop;
 
 import com.nerdherd.lib.AbstractOI;
-import com.nerdherd.lib.motion.drivetrain.AbstractDrivetrain;
+import com.nerdherd.lib.drivetrain.AbstractDrivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;

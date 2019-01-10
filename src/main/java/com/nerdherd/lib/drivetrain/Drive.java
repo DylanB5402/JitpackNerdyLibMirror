@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package com.nerdherd.lib.motion.drivetrain;
+package com.nerdherd.lib.drivetrain;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -19,7 +19,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.kauailabs.navx.frc.AHRS;
 import com.nerdherd.lib.drivers.NerdyTalon;
-import com.nerdherd.lib.motion.drivetrain.teleop.ArcadeDrive;
+import com.nerdherd.lib.drivetrain.teleop.ArcadeDrive;
 
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;

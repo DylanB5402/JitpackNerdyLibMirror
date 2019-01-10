@@ -5,11 +5,11 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package com.nerdherd.lib.motion.drivetrain.auto;
+package com.nerdherd.lib.drivetrain.auto;
 
 import java.io.File;
 
-import com.nerdherd.lib.motion.drivetrain.AbstractDrivetrain;
+import com.nerdherd.lib.drivetrain.AbstractDrivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;

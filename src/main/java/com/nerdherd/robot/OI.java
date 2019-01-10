@@ -1,8 +1,8 @@
-package com.nerdherd687.robot;
+package com.nerdherd.robot;
 
-import com.nerdherd687.lib.AbstractOI;
-import com.nerdherd687.lib.motor.commands.SetMotorPower;
-import com.nerdherd687.lib.pneumatics.commands.ExtendPiston;
+import com.nerdherd.lib.AbstractOI;
+import com.nerdherd.lib.motor.commands.SetMotorPower;
+import com.nerdherd.lib.pneumatics.commands.ExtendPiston;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;

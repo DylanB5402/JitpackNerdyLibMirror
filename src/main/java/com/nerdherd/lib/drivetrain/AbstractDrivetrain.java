@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package com.nerdherd.lib.motion.drivetrain;
+package com.nerdherd.lib.drivetrain;
 
 /**
  * Add your docs here.

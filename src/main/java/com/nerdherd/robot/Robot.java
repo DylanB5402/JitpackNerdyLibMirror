@@ -5,12 +5,12 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package com.nerdherd687.robot;
+package com.nerdherd.robot;
 
-import com.nerdherd687.lib.misc.AutoChooser;
-import com.nerdherd687.lib.motor.SingleMotorTalonSRX;
-import com.nerdherd687.lib.pneumatics.Piston;
-import com.nerdherd687.robot.subsystems.Drive;
+import com.nerdherd.lib.misc.AutoChooser;
+import com.nerdherd.lib.motor.SingleMotorTalonSRX;
+import com.nerdherd.lib.pneumatics.Piston;
+import com.nerdherd.robot.subsystems.Drive;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;

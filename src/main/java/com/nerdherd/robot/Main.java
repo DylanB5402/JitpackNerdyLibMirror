@@ -4,7 +4,7 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-package com.nerdherd687.robot;
+package com.nerdherd.robot;
 
 import edu.wpi.first.wpilibj.RobotBase;
 

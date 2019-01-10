@@ -1,4 +1,4 @@
-package com.nerdherd687.robot.constants;
+package com.nerdherd.robot.constants;
 
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.Trajectory.Config;

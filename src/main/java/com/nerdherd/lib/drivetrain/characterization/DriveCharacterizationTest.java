@@ -5,51 +5,44 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package com.nerdherd.lib.motion.drivetrain.auto;
+package com.nerdherd.lib.drivetrain.characterization;
 
-import com.nerdherd.lib.motion.drivetrain.AbstractDrivetrain;
-import com.nerdherd.lib.motion.drivetrain.TrajectoryFollower;
+import com.nerdherd.lib.drivetrain.AbstractDrivetrain;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import jaci.pathfinder.Trajectory;
 
-public class DriveTrajectory extends Command {
-  
-  private TrajectoryFollower m_controller;
-  private double m_leftVelocity, m_rightVelocity, m_startTime, m_time, m_lastTime;
+public class DriveCharacterizationTest extends Command {
+
+  private double m_voltage, m_startTime, m_time;
+  private double m_rampRate;
   private AbstractDrivetrain m_drive;
-
-  public DriveTrajectory(AbstractDrivetrain drive, Trajectory traj, int lookahead, Boolean goingForwards, double kP, double kD) {
+  
+  public DriveCharacterizationTest(AbstractDrivetrain drive, double rampRate) {
+    m_rampRate = rampRate;
     m_drive = drive;
-    m_controller = new TrajectoryFollower(traj, lookahead, goingForwards, kP, kD);
     requires(m_drive);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    m_startTime = Timer.getFPGATimestamp();
-    m_lastTime = Timer.getFPGATimestamp();
-    m_time = Timer.getFPGATimestamp() - m_startTime;
+      m_startTime = Timer.getFPGATimestamp();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     m_time = Timer.getFPGATimestamp() - m_startTime;
-    m_controller.calculate(m_drive.getXpos(), m_drive.getYpos(), m_drive.getRawYaw(), m_time - m_lastTime);
-    m_drive.setVelocityFPS(m_controller.getLeftVelocity(), m_controller.getRightVelocity());
-    m_lastTime = m_time;
+    m_voltage = (m_rampRate * m_time)/12;
+    m_drive.setPower(m_voltage, m_voltage);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return m_controller.isFinished();
+    return m_time > 12 / m_rampRate;
   }
-
-  
 
   // Called once after isFinished returns true
   @Override
@@ -61,5 +54,6 @@ public class DriveTrajectory extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }
