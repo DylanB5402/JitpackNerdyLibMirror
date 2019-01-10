@@ -10,7 +10,6 @@ package com.nerdherd.robot;
 import com.nerdherd.lib.misc.AutoChooser;
 import com.nerdherd.lib.motor.SingleMotorTalonSRX;
 import com.nerdherd.lib.pneumatics.Piston;
-import com.nerdherd.robot.subsystems.Drive;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -22,7 +21,6 @@ public class Robot extends TimedRobot {
 	
 	public static final String kDate = "2018_09_29_";
 
-	public static Drive drive;
 	public static SingleMotorTalonSRX intake;
 	public static Piston claw;
 	public static AutoChooser autoChooser;
@@ -31,7 +29,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		autoChooser = new AutoChooser();
-		drive = new Drive();
 		intake = new SingleMotorTalonSRX(1, "intake");
 		intake.setInversion(true);
 		intake.setSensorPhase(true);
