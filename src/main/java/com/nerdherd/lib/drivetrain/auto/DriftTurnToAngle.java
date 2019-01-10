@@ -1,6 +1,6 @@
 package com.nerdherd.lib.drivetrain.auto;
 
-import com.nerdherd.lib.drivetrain.Drivetrain;
+import com.nerdherd.lib.drivetrain.AbstractDrivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -17,7 +17,7 @@ public class DriftTurnToAngle extends Command {
     private double m_desiredAngle;
     private double m_distance;
     private double m_kRotP;
-    private Drivetrain m_drive;
+    private AbstractDrivetrain m_drive;
     /**
      * @param straightPower
      * @param angle
@@ -25,7 +25,7 @@ public class DriftTurnToAngle extends Command {
      *            (absolute value)
      * @param kRotP
      */
-    public DriftTurnToAngle(Drivetrain drive,double straightPower, double angle, double distance, double kRotP) {
+    public DriftTurnToAngle(AbstractDrivetrain drive,double straightPower, double angle, double distance, double kRotP) {
 	m_straightPower = straightPower;
 	m_desiredAngle = angle;
 	m_distance = distance;

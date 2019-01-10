@@ -1,6 +1,6 @@
 package com.nerdherd.lib.drivetrain.auto;
 
-import com.nerdherd.lib.drivetrain.Drivetrain;
+import com.nerdherd.lib.drivetrain.AbstractDrivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -12,9 +12,9 @@ public class DriveDistancePID extends Command {
 	private double m_distance;
 	private double m_error;
 	private double m_power, m_rotP;
-    private Drivetrain m_drive;
+    private AbstractDrivetrain m_drive;
 
-    public DriveDistancePID(Drivetrain drive, double distance, double rotP) {
+    public DriveDistancePID(AbstractDrivetrain drive, double distance, double rotP) {
         m_drive = drive;
         m_distance = distance;
         m_rotP = rotP;

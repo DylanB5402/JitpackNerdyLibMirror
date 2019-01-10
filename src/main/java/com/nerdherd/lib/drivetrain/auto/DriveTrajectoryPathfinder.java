@@ -9,7 +9,7 @@ package com.nerdherd.lib.drivetrain.auto;
 
 import java.io.File;
 
-import com.nerdherd.lib.drivetrain.Drivetrain;
+import com.nerdherd.lib.drivetrain.AbstractDrivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -23,11 +23,11 @@ public class DriveTrajectoryPathfinder extends Command {
   private DistanceFollower m_leftFollower, m_rightFollower;
   private double m_leftOutput, m_rightOutput, m_turn, m_angularError, m_rotP;
   private TankModifier m_modifier;
-  private Drivetrain m_drive;
+  private AbstractDrivetrain m_drive;
   double m_LeftVelocityP, m_LeftVelocityD, m_LeftV, m_LeftStatic;
   double m_RightVelocityP, m_RightVelocityD, m_RightV, m_RightStatic;
 
-  public DriveTrajectoryPathfinder(Drivetrain drive, Trajectory traj, double drivetrainWidth,
+  public DriveTrajectoryPathfinder(AbstractDrivetrain drive, Trajectory traj, double drivetrainWidth,
             double leftVelP, double rightVelP, double leftVelD, double rightVelD, double leftV, 
             double rightV, double leftStatic, double rightStatic, double rotP) {
     m_LeftVelocityP = leftVelP;
@@ -50,7 +50,7 @@ public class DriveTrajectoryPathfinder extends Command {
     requires(m_drive);
   }
 
-  // public DriveTrajectoryPathfinder(Drivetrain drive, String file) {
+  // public DriveTrajectoryPathfinder(AbstractDrivetrain drive, String file) {
   //   m_drive = drive;
   //   File traj = new File("/home/lvuser/paths/" + file + "_source.traj");
   //   SmartDashboard.putBoolean("Source exists", true);

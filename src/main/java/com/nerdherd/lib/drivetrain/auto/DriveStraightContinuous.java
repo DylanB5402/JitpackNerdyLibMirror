@@ -1,6 +1,6 @@
 package com.nerdherd.lib.drivetrain.auto;
 
-import com.nerdherd.lib.drivetrain.Drivetrain;
+import com.nerdherd.lib.drivetrain.AbstractDrivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -14,13 +14,13 @@ public class DriveStraightContinuous extends Command {
 
     private double m_distance;
     private double m_straightPower;
-    private Drivetrain m_drive;
+    private AbstractDrivetrain m_drive;
 
     /**
      * @param distance
      * @param straightPower
      */
-    public DriveStraightContinuous(Drivetrain drive, double distance, double straightPower) {
+    public DriveStraightContinuous(AbstractDrivetrain drive, double distance, double straightPower) {
         m_drive = drive;
 	m_distance = distance;
 	m_straightPower = straightPower;

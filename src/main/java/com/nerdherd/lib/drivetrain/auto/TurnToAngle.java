@@ -1,6 +1,6 @@
 package com.nerdherd.lib.drivetrain.auto;
 
-import com.nerdherd.lib.drivetrain.Drivetrain;
+import com.nerdherd.lib.drivetrain.AbstractDrivetrain;
 import com.nerdherd.lib.misc.NerdyMath;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -20,7 +20,7 @@ public class TurnToAngle extends Command {
     private double m_prevTimestamp;
     private double m_prevError;
     private double m_dTerm, m_rotP, m_rotD;
-    private Drivetrain m_drive;
+    private AbstractDrivetrain m_drive;
 
     private int m_counter;
     private int m_tolerance;

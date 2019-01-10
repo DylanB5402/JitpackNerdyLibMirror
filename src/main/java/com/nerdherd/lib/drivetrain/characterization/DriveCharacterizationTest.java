@@ -7,7 +7,7 @@
 
 package com.nerdherd.lib.drivetrain.characterization;
 
-import com.nerdherd.lib.drivetrain.Drivetrain;
+import com.nerdherd.lib.drivetrain.AbstractDrivetrain;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -16,9 +16,9 @@ public class DriveCharacterizationTest extends Command {
 
   private double m_voltage, m_startTime, m_time;
   private double m_rampRate;
-  private Drivetrain m_drive;
+  private AbstractDrivetrain m_drive;
   
-  public DriveCharacterizationTest(Drivetrain drive, double rampRate) {
+  public DriveCharacterizationTest(AbstractDrivetrain drive, double rampRate) {
     m_rampRate = rampRate;
     m_drive = drive;
     requires(m_drive);

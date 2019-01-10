@@ -1,6 +1,6 @@
 package com.nerdherd.lib.drivetrain.auto;
 
-import com.nerdherd.lib.drivetrain.Drivetrain;
+import com.nerdherd.lib.drivetrain.AbstractDrivetrain;
 import com.nerdherd.lib.misc.NerdyMath;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -20,7 +20,7 @@ public class ArcTurn extends Command {
     private double m_error;
 
     private double m_sign, m_rotP, m_rotMinPower, m_rotMaxPower;
-    private Drivetrain m_drive;
+    private AbstractDrivetrain m_drive;
 
     /**
      * Arc Turn
@@ -31,7 +31,7 @@ public class ArcTurn extends Command {
      * @param sign
      *            (+1.0 or -1.0)
      */
-    public ArcTurn(Drivetrain drive,double desiredAngle, boolean isRightPowered, double timeout, double sign, double rotP, double maxPower, double minPower) {
+    public ArcTurn(AbstractDrivetrain drive,double desiredAngle, boolean isRightPowered, double timeout, double sign, double rotP, double maxPower, double minPower) {
     m_drive = drive;
     m_desiredAngle = desiredAngle;
 	m_isRightPowered = isRightPowered;

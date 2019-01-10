@@ -1,6 +1,6 @@
 package com.nerdherd.lib.drivetrain.auto;
 
-import com.nerdherd.lib.drivetrain.Drivetrain;
+import com.nerdherd.lib.drivetrain.AbstractDrivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -11,9 +11,9 @@ public class DriveDistanceMotionMagic extends Command {
 
 	private double m_distance;
 	private double m_error;
-    private Drivetrain m_drive;
+    private AbstractDrivetrain m_drive;
 
-    public DriveDistanceMotionMagic(Drivetrain drive, double distance) {
+    public DriveDistanceMotionMagic(AbstractDrivetrain drive, double distance) {
         m_drive = drive;
     	m_distance = distance;
        requires(m_drive);

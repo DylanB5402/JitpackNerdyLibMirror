@@ -1,7 +1,7 @@
 package com.nerdherd.lib.drivetrain.auto;
 
 
-import com.nerdherd.lib.drivetrain.Drivetrain;
+import com.nerdherd.lib.drivetrain.AbstractDrivetrain;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -16,13 +16,13 @@ public class TurnTime extends Command {
     private double m_rotPower;
     private double m_timeout;
     private double m_startTime;
-    private Drivetrain m_drive;
+    private AbstractDrivetrain m_drive;
 
     /**
      * @param straightPower
      * @param timeout
      */
-    public TurnTime(Drivetrain drive,double rotPower, double timeout) {
+    public TurnTime(AbstractDrivetrain drive,double rotPower, double timeout) {
 	m_rotPower = rotPower;
 	m_timeout = timeout;
 

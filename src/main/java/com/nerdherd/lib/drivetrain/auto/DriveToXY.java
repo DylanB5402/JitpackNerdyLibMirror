@@ -1,6 +1,6 @@
 package com.nerdherd.lib.drivetrain.auto;
 
-import com.nerdherd.lib.drivetrain.Drivetrain;
+import com.nerdherd.lib.drivetrain.AbstractDrivetrain;
 import com.nerdherd.lib.misc.NerdyMath;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -21,10 +21,10 @@ public class DriveToXY extends Command {
 	private double m_currentY;
 	private boolean m_useStraightPID;
 	private double m_direction, m_rotP, m_distP;
-	private Drivetrain m_drive;
+	private AbstractDrivetrain m_drive;
 
 	
-    public DriveToXY(Drivetrain drive, double x, double y, double straightPower, boolean useStraightPID, double rotP, double straightP) {
+    public DriveToXY(AbstractDrivetrain drive, double x, double y, double straightPower, boolean useStraightPID, double rotP, double straightP) {
 		m_drive = drive;
 		m_desiredX = x;
     	m_desiredY = y;
