@@ -29,5 +29,5 @@ public class PathfinderThing {
         new Waypoint(5, 5, 0)  
       };
 
-    public static Trajectory testTraj = Pathfinder.generate(testPoints, testConfig);
+    public static Trajectory testTraj2 = Pathfinder.generate(testPoints, testConfig);
 }
